@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//tab, space and new line counter
+// convert multiple blanks into single blank and tabs
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
             i++;
             if (i > 1)
             {
-                c = '\b';
+                c = '\0';
                 i = 0;
             }
         }
