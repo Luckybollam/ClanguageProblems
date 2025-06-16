@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-//TYPE ESC AT THE END OF THE INPUT
+//letter counter
+
 #define OUT 1
 #define IN 0
 
@@ -8,9 +9,9 @@ int main()
 {
     int c, nl, nw, nc, state, it;
     int i = 0;
-    int word[10];
+    int word[26];
 
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 26; i++)
     {
         word[i] = 0;   
     }
@@ -20,7 +21,6 @@ int main()
     
     while ((c = getchar()) !=  EOF)
     {
-        ++nc;
         if (c == ' ' || c == '\n' || c == '\t')
         {
             state = OUT;
@@ -28,11 +28,15 @@ int main()
         else if (state == OUT)
         {
             state = IN;
-            ++nw;
-            ++word[nc-1];
-            nc = 0;
         }
-        it++;
+        else if (c < 'a')
+        {
+            ++word[c-'A'];
+        }
+        else
+        {
+            ++word[c-'a'];
+        }
 
         //break from loop
         if (c == 27)
@@ -42,7 +46,7 @@ int main()
         
     }
 
-    for (i = 1; i < 10; i++)
+    for (i = 0; i < 26; i++)
         {
             printf("%d", word[i]);  
         }
