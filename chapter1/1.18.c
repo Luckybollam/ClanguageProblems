@@ -38,10 +38,10 @@ int main()
     while ((len = get_line(line, MAXLINE)) > 0)
     {
         printf("%d\n", len+1);
-        if (len > max)
+        if (len > 80)
         {
-            max = len;
             copy(longest, line);
+            printf("%s", longest);
         }
         if ((c = getchar()) ==  27)
         {
