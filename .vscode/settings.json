@@ -1,4 +1,9 @@
 {
     "C_Cpp.default.compilerPath": "/usr/bin/clang",
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "ctype.h": "c",
+        "math.h": "c",
+        "string.h": "c"
+    }
 }
