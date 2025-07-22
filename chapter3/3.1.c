@@ -8,7 +8,7 @@
 //the last most bit gets cleared because the -1 changes the polarity (odd or even), and so no matter what, the last most bit will get cleared because it will be oppposite
 
 
-int binsearch(int x, int v[], int n)
+int binsearch2(int x, int v[], int n)
 {
     int low, high, mid;
     low = 0;
@@ -18,7 +18,39 @@ int binsearch(int x, int v[], int n)
         mid = (low+high)/2;
         if(x < v[mid])
         {
-            high = mid = 1;
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+
+    }
+    mid = (low + high)/2;
+
+    if (x == v[mid])
+    {
+        return mid;
+    }
+
+    return -1;
+
+
+}
+
+int binsearch(int x, int v[], int n)
+{
+    int low, high, mid;
+    low = 0;
+    high = n-1;
+    
+    
+    while (low <= high)
+    {
+        mid = (low+high)/2;
+        if(x < v[mid])
+        {
+            high = mid - 1;
         }
         else if (x > v[mid])
         {
@@ -26,7 +58,7 @@ int binsearch(int x, int v[], int n)
         }
         else
         { 
-            return mid:
+            return mid;
         }
 
     }
@@ -37,16 +69,27 @@ int binsearch(int x, int v[], int n)
 }
 
 
+
 int main()
 {
     clock_t st = clock();
-    v[10] = 1,2,3,4,5,6,7,8,9,10;
+    int v[15] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    printf("%d", binsearch(5, v[], 10));
+    printf("location is: %d\n", binsearch(8, v, 10));
     clock_t end = clock();
 
-    double tspmo = end - start;
-    printf("%lu", tspmo);
+    double tspmo = end - st;
+    printf("time is: %f\n", tspmo);
+
+
+    st = clock();
+    
+
+    printf("location is: %d\n", binsearch2(8, v, 10));
+    end = clock();
+
+    tspmo = end - st;
+    printf("time is: %f", tspmo);
     
     
 }
