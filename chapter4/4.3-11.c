@@ -29,35 +29,35 @@ void ungetch(int c) {
 }
 
 int getop(char s[]) {
-    int i = 0, c;
+    int i = 0;
+    int c;
+    static int last_char = ' ';  
 
-    while ((s[0] = c = getch()) == ' ' || c == '\t')
-        ;
+    while ((s[0] = c = last_char) == ' ' || c == '\t')
+        last_char = getchar();
 
     s[1] = '\0';
 
     if (!isdigit(c) && c != '.') {
+        last_char = getchar();  
         return c;
     }
 
     if (isdigit(c)) {
-        while (isdigit(s[++i] = c = getch()))
+        while (isdigit(s[++i] = c = getchar()))
             ;
     }
 
     if (c == '.') {
-        while (isdigit(s[++i] = c = getch()))
+        while (isdigit(s[++i] = c = getchar()))
             ;
     }
 
     s[i] = '\0';
-
-    if (c != EOF) {
-        ungetch(c);
-    }
-
+    last_char = c;  
     return NUMBER;
 }
+
 
 void push(double f) {
     if (sp < MAXVAL) {
@@ -77,6 +77,7 @@ double pop(void) {
 }
 
 int main() {
+    int temp = 0;
     int type;
     double op2;
     char s[MAXOP];
@@ -122,6 +123,7 @@ int main() {
                 {
                     printf("error: not enough elements in stack");
                 }
+                break;
             case 's':
                 if (sp > 1)
                 {
@@ -129,14 +131,23 @@ int main() {
                     val[sp-2] = val[sp-4];
 
                 }
+                break;
             case 'l':
                 temp1 = val[sp-1];
                 val[sp-1] = val[sp-2];
                 val[sp-2] = temp1;
+                break;
             case 'c':
                 for (i = 0; i < sp; i++)
                 {
                     val[i] = '\0';
+                }
+                break;
+            case '^':
+                op2 = pop();
+                for (int i = 0; i < op2; i++)
+                {
+                    temp = temp + pop() * pop();
                 }
             default:
                 printf("error: unknown command %s\n", s);
