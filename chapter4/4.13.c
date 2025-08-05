@@ -1,37 +1,26 @@
 #include <stdio.h>
-#include <math.h>
-#include <ctype.h>
 #include <string.h>
 
-int j = 0;
-
-void itoa(int n)
+void reverse(char s[], int left, int right)
 {
-    static int j = 0;
-    char s[100];
+    if (left >= right)
+        return;
 
-    if (n < 0)
-    {
-        putchar('-');
-        n = -n;
-    }
-    if (n/10)
-    {
-        itoa(n/10);
-        j++;
-    }
-    //printf("%d", j);
-    
-    s[j] = n % 10 + '0';
-    printf("%c", s[j]);
-    
-    
+    char temp = s[left];
+    s[left] = s[right];
+    s[right] = temp;
 
+    reverse(s, left + 1, right - 1);
 }
 
 int main()
 {
-    int n = 108;
-    itoa(n);    
+    char s[6] = {'h', 'e', 'l', 'l', 'o', '\0'}; 
 
+    int len = strlen(s);
+    reverse(s, 0, len - 1); 
+
+    printf("Reversed string: %s\n", s);
+
+    return 0;
 }
