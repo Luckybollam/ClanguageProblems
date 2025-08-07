@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-void reverse(char s[], int left, int right)
+void reverser(char s[], int left, int right)
 {
     if (left >= right)
+    {
         return;
-
-    char temp = s[left];
+    }
+    char temp;
+    temp = s[left];    
     s[left] = s[right];
     s[right] = temp;
 
-    reverse(s, left + 1, right - 1);
+    reverser(s, left + 1, right - 1);
 }
 
 int main()
@@ -18,9 +20,7 @@ int main()
     char s[6] = {'h', 'e', 'l', 'l', 'o', '\0'}; 
 
     int len = strlen(s);
-    reverse(s, 0, len - 1); 
-
+    reverser(s, 0, len - 1); 
     printf("Reversed string: %s\n", s);
-
     return 0;
 }

@@ -4,6 +4,8 @@
 
 #define BUFSIZE 100
 
+//getfloat still returns an int
+
 char buf[BUFSIZE];  
 int bufp = 0;       
 
