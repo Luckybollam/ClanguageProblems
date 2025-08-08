@@ -39,13 +39,15 @@ int strcmp1(char *s, char *t, int n)
     int i = 0;
     int j = strlen(s);
     int state = 0;
+   
+
     for (; i < j; i++)
     {
         if (i == n)
         {
             break;
         }
-        if (*s == *t)
+        if (*s++ == *t++)
         {
             state++;
         }
@@ -63,5 +65,5 @@ int main()
     char *l = "Hello";
     printf("%s\n", strcat2(s, t, 5));
     printf("%d\n", strcmp1(s, l, 5));
-    
+
 }
