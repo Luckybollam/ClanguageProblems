@@ -5,6 +5,7 @@
         "ctype.h": "c",
         "math.h": "c",
         "string.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "__locale": "c"
     }
 }
