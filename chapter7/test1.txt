@@ -1,0 +1,7 @@
+BLAH BLAH BLAH
+hello Hello HELLO
+The first chapter is about C programming.
+This line doesn't mention the word.
+Another Chapter begins here.
+CHAPTER 3 covers standard input.
+The last section is just a summary.
