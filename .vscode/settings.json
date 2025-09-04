@@ -1,5 +1,5 @@
 {
-    "C_Cpp.default.compilerPath": "/usr/bin/clang",
+    "C_Cpp.default.compilerPath": "c:\\Users\\lboll\\Downloads\\ClanguageProblems\\myMandF.c",
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "ctype.h": "c",
