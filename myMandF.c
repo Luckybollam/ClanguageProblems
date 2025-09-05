@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <sys/mman.h>
 
-
+#define _GNU_SOURCE
 #define MAXALLOC 1000000 //1 megabyte 
 #define MAXNUMALLOC 50
 
@@ -16,13 +16,17 @@ struct ptrs {
     bool open;
 } ptrs[MAXNUMALLOC];
 
-
+int my_free(void *);
 
 void *my_malloc(size_t size)
 {
-    
+    int k;
     if (MAXALLOC < allocedbytes+size) {
         printf("Too big, cannot allocate\n");
+        return NULL;
+    }
+    if (size == 0) {
+        printf("Cannot allocate 0 bytes\n");
         return NULL;
     }
 
@@ -34,7 +38,7 @@ void *my_malloc(size_t size)
     }
     allocedbytes += size;
 
-    for (int k = 0; k < MAXNUMALLOC; k++) {
+    for (k = 0; k < MAXNUMALLOC; k++) {
         if (ptrs[k].open == true) {
             ptrs[k].ptr = ptr;
             ptrs[k].size = size;
@@ -42,6 +46,8 @@ void *my_malloc(size_t size)
             return ptr;
         }
     }
+    munmap(ptr, size);
+    allocedbytes -= size;
     printf("too many allocated chunks, please free\n");
     return NULL;
 }
@@ -74,10 +80,14 @@ int main()
     }
     int* test;
     test = my_malloc(sizeof(int));
-    if(test = NULL)
+    if(test == NULL)
     {
         printf("Malloc failed\n");
         return 1;
     }
+    printf("Total allocated: %zu bytes\n", allocedbytes);
     *test = 20;
+    printf("%d\n", *test);
+    my_free(test);
+    return 0;
 }
